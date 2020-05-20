@@ -49,17 +49,31 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		request.setCharacterEncoding("UTF-8");
 		String midStr = request.getParameter("mid");
 		int mid = Integer.parseInt(midStr);
 		String name = request.getParameter("name");
+		if( name.length() == 0 ) {
+			throw new IllegalArgumentException("名前には文字を入力してください");
+		}
 		String adr = request.getParameter("adr");
+		if( adr.length() == 0 ) {
+			throw new IllegalArgumentException("住所には文字を入力してください");
+		}
 
 		MemberDAO dao = new MemberDAO();
 		Member m = new Member(mid, name,adr);
 		dao.update(m);
 
 		response.sendRedirect("mlist");
+	}catch(NumberFormatException e) {
+		request.setAttribute("mes", e.getMessage());
+		request.setAttribute("url", "mlist");
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+		dispatcher.forward(request, response);
 	}
 
+	}
 }
