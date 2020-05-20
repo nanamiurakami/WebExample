@@ -45,8 +45,17 @@ public class MemberListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+		String adr = request.getParameter("adr");
+
+		MemberDAO dao = new MemberDAO();
+		Member m = new Member(0, name, adr);
+		dao.insert(m);
+
+		response.sendRedirect("mlist");
+
 	}
+
 
 }

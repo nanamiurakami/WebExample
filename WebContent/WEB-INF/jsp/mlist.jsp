@@ -11,9 +11,9 @@
 
 <h1>メンバー一覧</h1>
 
-<form method="post" action="member">
-氏名:<input type="text" name="name" value="${member.name}"><br>
-住所:<input type="text" name="adr" value="${member.adr}"><br>
+<form method="post" action="mlist">
+氏名:<input type="text" name="name"><br>
+住所:<input type="text" name="adr"><br>
 <input type="submit" value="追加">
 
 </form>

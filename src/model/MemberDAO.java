@@ -70,7 +70,7 @@ public class MemberDAO {
 	public void insert(Member m) {
 		try (Connection con = DriverManager.getConnection(URL,USER,PASS);){
 
-			String sql = "INSERT INTO shouhin (name,adr) VALUES( ? , ? )";
+			String sql = "INSERT INTO member (name,adr) VALUES( ? , ? )";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, m.getName());
 
