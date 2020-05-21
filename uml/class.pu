@@ -1,0 +1,34 @@
+@startuml
+package Keijiban{
+	class Kakikomi{
+		-kid
+		-kname
+		-honbun
+		-nitiji
+	}
+	class KakikomiDAO{
+		+findAll()
+		+findByKid(int kid)
+		+insert(Keijiban k)
+		+update(Keijiban k)
+		+delete(int kid)
+	}
+}
+package servlet{
+	class KeijibanListServlet{
+		+doGet()
+	}
+	class KeijibanWriteServlet{
+		+doGet()
+		+doPost()
+	}
+	class KeijibanDeleteServlet{
+		+doGet()
+		+doPost()
+	}
+}
+Keijiban -* KakikomiDAO
+KeijibanListServlet..> KakikomiDAO
+KeijibanWriteServlet..> KakikomiDAO
+KeijibanDeleteServlet..> KakikomiDAO
+@enduml

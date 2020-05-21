@@ -1,0 +1,19 @@
+@startuml
+title 掲示板削除 /keijiban GET
+actor ユーザー
+participant keijiban
+participant KeijibanDeleteServlet
+participant kdel.jsp
+database KakikomiDAO
+
+ユーザー -> keijiban:削除リンククリック
+keijiban -> KeijibanDeleteServlet:GET
+KeijibanDeleteServlet -> kdel.jsp:フォワード
+kdel.jsp -> ユーザー:確認画面表示
+ユーザー --> kdel.jsp:削除ボタン押下
+kdel.jsp -> KeijibanDeleteServlet:POST
+KeijibanDeleteServlet -> KakikomiDAO:new
+KeijibanDeleteServlet -> KakikomiDAO:delete()
+KeijibanDeleteServlet -> keijiban:リダイレクト
+keijiban --> ユーザー:表示
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+title ページ遷移図
+keijiban : 掲示板
+write:GET 編集\nPOST 更新
+delete:GET 削除確認\nPOST 削除
+
+[*]->keijiban
+keijiban-->delete:リンク
+delete-->delete:POST
+keijiban-->write:リンク
+write-->write:POST
+
+@enduml

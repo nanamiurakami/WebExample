@@ -1,0 +1,20 @@
+@startuml
+title 掲示板閲覧 /keijiban GET
+actor ユーザ
+participant KeijibanListServlet
+database KakikomiDAO
+participant Keijiban
+participant Request
+participant keijiban.jsp
+
+ユーザ -> KeijibanListServlet:GETリクエスト
+KeijibanListServlet -> KakikomiDAO**:生成()
+KeijibanListServlet -> KakikomiDAO++:findAll()
+KakikomiDAO -> Keijiban**:リストを生成
+KakikomiDAO --> KeijibanListServlet--:Keijibanリスト
+KeijibanListServlet -> Request++:setAttribute(Keijibanリスト)
+Request--
+KeijibanListServlet -> keijiban.jsp++:フォワード
+KeijibanListServlet--
+keijiban.jsp --> ユーザ:表示
+@enduml

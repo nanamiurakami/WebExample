@@ -1,0 +1,20 @@
+@startuml
+title 掲示板投稿 /keijiban GET
+actor ユーザー
+participant	KeijibanWriteServlet
+participant	keijiban.jsp
+participant	Kakikomi
+participant	keijiban
+database KakikomiDAO
+
+ユーザー -> KeijibanWriteServlet:GET
+KeijibanWriteServlet -> keijiban.jsp:フォワード
+KeijibanWriteServlet -> ユーザー:入力フォーム表示
+ユーザー -> KeijibanWriteServlet:入力
+keijiban.jsp -> KeijibanWriteServlet:POST
+KeijibanWriteServlet -> KakikomiDAO:new
+KeijibanWriteServlet --> Kakikomi:new
+KeijibanWriteServlet -> KakikomiDAO:insert()
+KeijibanWriteServlet ->	keijiban:リダイレクト
+keijiban --> ユーザー:表示
+@enduml
