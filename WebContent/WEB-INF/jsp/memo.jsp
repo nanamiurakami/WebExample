@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<h1>会議について</h1>
+<h1>${memo.title}</h1>
 
-<p>${memo.title}</p>
 <p>${memo.body}</p>
+
 <a href="memolist">戻る</a>
 </body>
 </html>
